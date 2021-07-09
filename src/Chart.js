@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer, Tooltip } from 'recharts';
-import Title from './Title';
 import Week from './Week.js';
 
 // Generate Sales Data

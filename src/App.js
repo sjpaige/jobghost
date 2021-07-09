@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import NavBar from './NavBar.js';
 import Jobs from './Jobs.js';
 import Loading from './Loading.js';
-import { Container, createTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import { purple, red } from '@material-ui/core/colors';
 
