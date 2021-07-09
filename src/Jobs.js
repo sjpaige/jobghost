@@ -3,6 +3,7 @@ import { Grid, Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import FormDialog from './FormDialog.js';
+import Loading from './Loading.js';
 
 
 
@@ -41,7 +42,7 @@ return(
     
         <Grid container spacing={3}>
             {error && <h1>Error: {JSON.stringify(error)}</h1>}
-            {loading && <h1>Loading...</h1>}
+            {loading && <Container xs><Loading /></Container>}
             {jobs && jobs.map(job => <Grid key={job.id} item xs={12} md={6} lg={3}><Job key={job.id} job={job} firestore={firestore} auth={auth}/></Grid>)} 
         </Grid>
         
