@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -88,6 +88,7 @@ function FormDialog (props) {
             fullWidth
             multiline
           />
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
