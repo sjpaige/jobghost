@@ -9,7 +9,8 @@ Has a small about page to describe what it can do.
 
 
 ## See it in action
-soon tm
+https://jobghost-48ac7.web.app/
+Google sign in required.
 
 ## Contributions
 Not necessary.
