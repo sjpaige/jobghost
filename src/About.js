@@ -48,28 +48,26 @@ const infoItems = [
     }
 ]
 
-export default function About(){
+function About () {
 
     const classes = useStyles();
+
     return(
         <Container lg className={classes.root}>
-        <Grid 
-        container
-        spacing={3}
-        className={classes.gridContent}
-        >
-            {infoItems.map( (info) => (
-                <Grid item xs justifyContent="center">
-                        <img 
-                        className={classes.media}
-                        src={info.image}
-                        alt={info.alt}
-                    />
-                    <Typography variant="h4" className={classes.text}>{info.title}</Typography>  
-                    <Typography variant="body2" className={classes.text}>{info.body}</Typography>
-                </Grid>)
-            )}
-        </Grid>
+            <Grid container spacing={3} className={classes.gridContent}>
+                {infoItems.map( (info) => (
+                    <Grid item xs justifyContent="center">
+                            <img 
+                                className={classes.media}
+                                src={info.image}
+                                alt={info.alt}
+                            />
+                        <Typography variant="h4" className={classes.text}>{info.title}</Typography>  
+                        <Typography variant="body2" className={classes.text}>{info.body}</Typography>
+                    </Grid>)
+                )}
+            </Grid>
         </Container>
     )
 }
+export default About;

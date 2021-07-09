@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import NavBar from './NavBar.js';
 import Jobs from './Jobs.js';
 import Loading from './Loading.js';
+import Error from './Error.js';
 import { createTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import { purple, red } from '@material-ui/core/colors';
@@ -29,7 +30,7 @@ const theme = createTheme({
   }
 })
 
-function App() {
+function App (){
   const firebase = useContext(FirebaseContext);
   const auth = firebase.auth;
   const firestore = firebase.firestore;
@@ -37,21 +38,17 @@ function App() {
   
   return (
     <>
-      {error && <h1>Fatal Error: {JSON.stringify(error)}</h1>}
+      {error && <Error />}
       {loading && <Loading />}
       {user && 
       <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <NavBar auth={auth}/>
-      <Switch>
-        <Route component={About} path="/about" />
-        <Route path="/jobs">
-          <Jobs firestore={firestore} auth={auth} />
-        </Route>
-        <Route path="/" exact>
-            <Dashboard firestore={firestore} user={auth.currentUser} />
-        </Route>
-      </Switch>
+        <CssBaseline />
+          <NavBar auth={auth}/>
+            <Switch>
+              <Route component={About} path="/about" />
+              <Route path="/jobs"> <Jobs firestore={firestore} auth={auth} /> </Route>
+              <Route path="/" exact> <Dashboard firestore={firestore} user={auth.currentUser} /> </Route>
+           </Switch>
     </ThemeProvider>}
     {!loading && !user && <SignIn auth={auth}/>}
     </>

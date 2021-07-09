@@ -9,16 +9,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
 
-export default function FormDialog(props) {
-  const firestore = props.firestore;
+function FormDialog (props) {
 
   const [open, setOpen] = useState(false);
-  const auth = props.auth;
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [company, setCompany] = useState("");
-  const uid = auth.currentUser.uid;
+  const uid = props.auth.currentUser.uid;
 
   const resetData = () => {
     setTitle("");
@@ -38,7 +36,7 @@ export default function FormDialog(props) {
   const sendJobData = async (event) => {
       event.preventDefault();
       
-      await firestore.collection('jobs').add({
+      await props.firestore.collection('jobs').add({
           title: title,
           description: description,
           company: company,
@@ -90,7 +88,6 @@ export default function FormDialog(props) {
             fullWidth
             multiline
           />
-
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -104,3 +101,4 @@ export default function FormDialog(props) {
     </div>
   );
 }
+export default FormDialog;

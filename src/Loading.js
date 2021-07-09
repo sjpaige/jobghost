@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Loading() {
+const Loading = () => {
   const classes = useStyles();
 
   return (
@@ -22,3 +22,4 @@ export default function Loading() {
     </div>
   );
 }
+export default Loading;

@@ -22,10 +22,6 @@ class Week {
     toReadable(day){
         return `${new Date(day).toLocaleString('default', {month: 'long', day: 'numeric'})} `
     }
-
-
-
-    // for each day in week scan jobs count occurences
 }
 
 export default Week;

@@ -7,6 +7,7 @@ import Week from './Week.js';
 import Title from './Title.js';
 import JobsCreatedTodayCard from './JobsCreatedTodayContent.js';
 import Loading from './Loading.js';
+import Error from './Error.js';
 import { Typography } from '@material-ui/core';
 
 
@@ -31,24 +32,14 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     }
 }))
+
 const week = new Week();
-const today = new Date(new Date().setHours(0,0,0,0)).getTime();
 
-console.log(week.daysOfWeek);
-console.log(today);
+function Dashboard(props) {
 
-if(week.daysOfWeek.includes(today)) console.log('today is present');
-
-
-
-
-export default function Dashboard (props) {
-   
-    const firestore = props.firestore;
-    const user = props.user;
-    const query = firestore
+    const query = props.firestore
             .collection('jobs')
-            .where("uid", "==", user.uid)
+            .where("uid", "==", props.user.uid)
     const [jobs, loading, error] = useCollectionDataOnce (query, {'idField': 'id'})
     
     const classes = useStyles();
@@ -60,8 +51,9 @@ export default function Dashboard (props) {
                 <Paper className={classes.paper}>
                     <Title>Recent Activity</Title>
                     <div className={classes.fixedheight} >
+                        {error && <Error />}
                         {loading && <Loading />}                   
-                        {jobs && <Chart jobs={jobs}/>}
+                        {jobs && <Chart jobs={jobs} week={week}/>}
                     </div>
                 </Paper>
                 </Grid>
@@ -69,25 +61,22 @@ export default function Dashboard (props) {
                 <Grid item lg={4} md={4} xs={12}> 
                     <Card className={classes.card}>
                         <CardContent>
-                            
-                                {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                                {loading && <Loading />}
-                                {jobs && <div><Typography align='left' variant="h4">Total:</Typography> <Typography align='center' variant='h1' color="primary">{jobs.length}</Typography></div> }
-                           
+                            {error && <Error />}
+                            {loading && <Loading />}
+                            {jobs && <div><Typography align='left' variant="h4">Total:</Typography> <Typography align='center' variant='h1' color="primary">{jobs.length}</Typography></div> }
                         </CardContent>
                     </Card>
                 </Grid>
                 <Grid item lg={8} md={8} xs={12}>
                     <Card className={classes.card}>
+                    {error && <Error />}
                     {loading && <CardContent><Loading /></CardContent>}
-                    {jobs && <JobsCreatedTodayCard jobs={jobs}/>}
+                    {jobs && <JobsCreatedTodayCard jobs={jobs} week={week}/>}
                     
                     </Card>
                 </Grid>
             </Grid>
         </Container>
-
-
-
     )
 }
+export default Dashboard;

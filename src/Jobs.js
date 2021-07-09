@@ -4,8 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import FormDialog from './FormDialog.js';
 import Loading from './Loading.js';
-
-
+import Error from './Error.js';
 
 const useStyles = makeStyles((theme) => ({
     titleContainer: {
@@ -21,32 +20,32 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function Jobs(props){
-    const firestore = props.firestore;
-    const auth = props.auth;
+function Jobs(props) {
 
-    const jobsRef = firestore.collection("jobs");
-    const query = jobsRef.where("uid", "==", auth.currentUser.uid);
+    const jobsRef = props.firestore.collection("jobs");
+    const query = jobsRef.where("uid", "==", props.auth.currentUser.uid);
     const [jobs, loading, error] = useCollectionData(query, {idField: 'id'}); 
-    
     const classes = useStyles();
 
-return(
-    <div>
-    <Container className={classes.titleContainer}>
-        <Typography align="center" variant="h2">Job Applications</Typography>
-        <div className={classes.button}>
-            <FormDialog  firestore={firestore} auth={auth} />    
+    return(
+        <div>
+            <Container className={classes.titleContainer}>
+                <Typography align="center" variant="h2">Job Applications</Typography>
+                <div className={classes.button}>
+                    <FormDialog  firestore={props.firestore} auth={props.auth} />    
+                </div>
+            </Container>
+            <Grid container spacing={3}>
+                {error && <Error />}
+                {loading && <Container xs><Loading /></Container>}
+                {jobs && jobs.map(job => (
+                    <Grid key={job.id} item xs={12} md={6} lg={4}>
+                        <Job key={job.id} job={job} firestore={props.firestore} auth={props.auth}/>
+                    </Grid>
+                ))} 
+            </Grid>
         </div>
-    </Container>
-    
-        <Grid container spacing={3}>
-            {error && <h1>Error: {JSON.stringify(error)}</h1>}
-            {loading && <Container xs><Loading /></Container>}
-            {jobs && jobs.map(job => <Grid key={job.id} item xs={12} md={6} lg={3}><Job key={job.id} job={job} firestore={firestore} auth={auth}/></Grid>)} 
-        </Grid>
-        
-        </div>)
+    )
 }
 
 export default Jobs;

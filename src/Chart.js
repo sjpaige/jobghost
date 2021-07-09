@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer, Tooltip } from 'recharts';
-import Week from './Week.js';
 
-// Generate Sales Data
 function createData(time, amount) {
   return { time, amount };
 }
 
-const week = new Week();
-
-export default function Chart(props) {
-  const [jobs, setJobs] = useState(props.jobs);
+function Chart(props){
 
   function countDays(day){
-    return jobs.filter(job => week.toCompareFormat(job.createDate) === day).length;
-    
+
+    return props.jobs.filter(job => props.week.toCompareFormat(job.createDate) === day).length;
   }
-  const data = week.daysOfWeek.map( day => {
-    return createData(week.today === day ? week.toReadable(day) + " (today)" : week.toReadable(day), countDays(day, jobs))}
+
+  
+  const data = props.week.daysOfWeek.map( day => {
+    return createData(props.week.today === day ? props.week.toReadable(day) + " (today)" : props.week.toReadable(day), countDays(day, props.jobs))}
   )
 
   const theme = useTheme();
   
-
   return (
     <React.Fragment>
       <ResponsiveContainer>
@@ -54,3 +50,5 @@ export default function Chart(props) {
     </React.Fragment>
   );
 }
+
+export default Chart;

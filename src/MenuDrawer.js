@@ -12,44 +12,35 @@ import { Typography } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 
 
-export default function MenuDrawer () {
+function MenuDrawer () {
 
-   return ( 
-       
-        <List>
-    <Container maxWidth="xs">
-      <Link href="/">
-        <Typography variant="h4" color="secondary">Job Ghost</Typography>
-      </Link>
-    </Container>
+  return ( 
+    <List>
+      <Container maxWidth="xs">
+        <Link href="/">
+          <Typography variant="h4" color="secondary">Job Ghost</Typography>
+        </Link>
+      </Container>
 
-    <ListItem component="a" href="/" button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText>
-        Dashboard
-      </ListItemText>
-    </ListItem>
-    <ListItem component="a" href="/jobs" button>
+      <ListItem component="a" href="/" button>
+        <ListItemIcon><DashboardIcon /></ListItemIcon>
+        <ListItemText>Dashboard</ListItemText>
+      </ListItem>
+      <ListItem component="a" href="/jobs" button>
         <ListItemIcon>
           <WorkIcon />
         </ListItemIcon>
-        <ListItemText>
-          Job Applications
-        </ListItemText>
+        <ListItemText>Job Applications</ListItemText>
     </ListItem>
 
     <ListItem component="a" href="/about" button>
       <ListItemIcon>
         <Info />
       </ListItemIcon>
-      <ListItemText >
-        About
-      </ListItemText>
+      <ListItemText >About</ListItemText>
     </ListItem>
   </List>
-  
-)
-
+  )
 }
+
+export default MenuDrawer;
