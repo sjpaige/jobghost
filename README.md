@@ -3,7 +3,7 @@
 ## Description
 A small React web tool hosted on Google firebase that can be used to your own track job applications.
 
-![the jobs screen](https://github.com/sjpaige/jobghost/tree/master/src/static/misc/jobs.png)
+![the jobs screen](https://github.com/sjpaige/jobghost/blob/master/src/static/misc/jobs.PNG)
 
 Has a dashboard with some basic metrics to help with staying motivated.
 
