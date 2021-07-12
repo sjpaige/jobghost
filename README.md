@@ -9,9 +9,17 @@ Has a small about page to describe what it can do.
 
 
 ## See it in action
-https://jobghost-48ac7.web.app/
+[Job Ghost Live Version](https://jobghost-48ac7.web.app/)
 
 Authenticates with  google account.
+
+## Roadmap
+- [x] Add jobs with title, description, company name
+- [x] Authentication
+- [x] Dashboard tracks daily created, total created
+- [ ] Dashboard tracks which stage applied, interviews, offers
+- [ ] Offline Version
+- [ ] Search 
 
 ## Contributions
 Not necessary.
