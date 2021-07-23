@@ -7,33 +7,41 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import WorkIcon from '@material-ui/icons/Work';
 import { Info } from '@material-ui/icons';
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import { Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import GhostLogo from './GhostLogo';
 
 
 function MenuDrawer () {
 
   return ( 
+    
     <List>
+      
       <Container maxWidth="xs">
-        <Link href="/">
-          <Typography variant="h4" color="secondary">Job Ghost</Typography>
+        <Grid container justifyContent="center">
+          <GhostLogo height={75} width={75} color={"black"}/>
+        </Grid>
+      
+        <Link style={{textDecoration: 'none'}} to="/">
+          <Typography  variant="h4" color="secondary">Job Ghost</Typography>
         </Link>
       </Container>
 
-      <ListItem component="a" href="/" button>
+      <ListItem component={Link} to="/" button>
         <ListItemIcon><DashboardIcon /></ListItemIcon>
         <ListItemText>Dashboard</ListItemText>
       </ListItem>
-      <ListItem component="a" href="/jobs" button>
+      <ListItem component={Link} to="/jobs" button>
         <ListItemIcon>
           <WorkIcon />
         </ListItemIcon>
         <ListItemText>Job Applications</ListItemText>
     </ListItem>
 
-    <ListItem component="a" href="/about" button>
+    <ListItem component={Link} to="/about" button>
       <ListItemIcon>
         <Info />
       </ListItemIcon>
