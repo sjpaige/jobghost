@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, makeStyles, Grid, Container, Link} from '@material-ui/core';
+import { Typography, makeStyles, Grid, Container, Link, Card} from '@material-ui/core';
 import Copyright from './Copyright.js';
 import resume from './static/about/resume.jpg';
 import devices from './static/about/devices.jpg';
@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100vh',
     },
     media:{
-        maxHeight: 340,
-        maxWidth: 340, 
+        height: 340,
+        width: 340, 
         borderRadius: '10px',
     },
     text:{
@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 const infoItems = [
-    {
+    {   
+        id: 0,
         title: "Stay Organized",
         body: 
         `Manage your job search using the Job Ghost tool. 
@@ -42,6 +43,7 @@ const infoItems = [
         alt: "A person looking at a data dashboard."
     },
     {
+        id: 1,
         title: "Available Anywhere",
         body: 
         `Job Ghost is available as a web tool on both mobile and pc web platforms.`,
@@ -49,6 +51,7 @@ const infoItems = [
         alt: "A person sitting near a smartphone and laptop."
     },
     {
+        id: 2,
         title: "Keep Track",
         body: 
         `Track once you have applied, when you interview, and finally if you get an offer.`,
@@ -62,16 +65,18 @@ function About () {
     const classes = useStyles();
 
     return(
-        <Container lg className={classes.root}>
-            <Grid container spacing={3} className={classes.gridContent}>
+        <Container maxWidth="lg" className={classes.root}>
+            <Grid container spacing={3} className={classes.gridContent} justifyContent="center">
                 {infoItems.map( (info) => (
-                    <Grid item xs justifyContent="center">
-                            <img 
+                    <Grid key={info.id} item xs >
+                        <Card className={classes.media}>
+                                <img 
                                 className={classes.media}
                                 src={info.image}
                                 alt={info.alt}
                             />
-                           
+                        </Card>
+                        
                         <Typography variant="h4" className={classes.text}>{info.title}</Typography>  
                         <Typography variant="body2" className={classes.text}>{info.body}</Typography>
                     </Grid>)
