@@ -18,11 +18,15 @@ class Firebase {
 
         this.auth = firebase.auth();
         this.firestore = firebase.firestore();
-        this.provider = new firebase.auth.GoogleAuthProvider();
+        this.googleProvider = new firebase.auth.GoogleAuthProvider();
+        this.githubProvider = new firebase.auth.GithubAuthProvider();
     } 
 
     signInWithGoogle(){
-        this.auth.signInWithPopup(this.provider);
+        this.auth.signInWithPopup(this.googleProvider);
+    }
+    signInWithGithub(){
+        this.auth.signInWithPopup(this.githubProvider)
     }
 
 }
